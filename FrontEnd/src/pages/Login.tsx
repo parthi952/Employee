@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Building2, Lock, Mail, ArrowRight, Sparkles, AlertCircle } from 'lucide-react';
+import { Building2, Lock, Mail, ArrowRight, AlertCircle } from 'lucide-react';
 
 export const Login: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('admin@gmail.com');
+  const [password, setPassword] = useState('pass123');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -30,11 +30,6 @@ export const Login: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  };
-
-  const handleDemoFill = () => {
-    setEmail('admin@example.com');
-    setPassword('admin123');
   };
 
   return (
@@ -68,7 +63,7 @@ export const Login: React.FC = () => {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="admin@example.com"
+                placeholder="admin@gmail.com"
                 className="w-full bg-[#f8fafc] border border-[#cbd5e1] rounded-xl py-2.5 pl-10 pr-4 text-xs text-[#0f172a] focus:border-[#0256c4] focus:bg-white focus:outline-none transition"
                 required
               />
@@ -107,17 +102,6 @@ export const Login: React.FC = () => {
             )}
           </button>
         </form>
-
-        <div className="mt-8 pt-6 border-t border-[#e2e8f0] text-center">
-          <button
-            onClick={handleDemoFill}
-            type="button"
-            className="w-full py-2 px-3 bg-[#f8fafc] hover:bg-[#f1f5f9] border border-[#cbd5e1] text-[#334155] text-[11px] font-bold rounded-xl flex items-center justify-center gap-2 transition cursor-pointer"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-[#d97706]" />
-            <span>Auto-Fill Demo Admin Credentials</span>
-          </button>
-        </div>
       </div>
     </div>
   );

@@ -41,14 +41,18 @@ const getMe = asyncHandler(async (req, res) => {
 
 const seedDefaultAdmin = async () => {
   try {
-    const adminCount = await Admin.countDocuments();
-    if (adminCount === 0) {
-      await Admin.create({
+    let admin = await Admin.findOne({ email: "admin@gmail.com" });
+    if (!admin) {
+      admin = await Admin.create({
         name: "Admin User",
-        email: "[EMAIL_ADDRESS]",
-        password: "admin123",
+        email: "admin@gmail.com",
+        password: "pass123",
       });
-      console.log("Default Admin created: [EMAIL_ADDRESS] / admin123");
+      console.log("Default Admin created: admin@gmail.com / pass123");
+    } else {
+      admin.password = "pass123";
+      await admin.save();
+      console.log("Default Admin password updated to pass123");
     }
   } catch (error) {
     console.error("Failed to seed default admin:", error.message);
